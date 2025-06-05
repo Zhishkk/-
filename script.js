@@ -1,14 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   // 🔴 СТАРЫЙ КОД: вся твоя анимация, glitch, смена надписей и т.п.
   // например:
-  const subtitle = document.querySelector('.subtitle');
-  const glitchClass = 'glitch-started';
-  let glitchStarted = false;
+  const title = document.querySelector('h1.glitch');
 
-  setTimeout(() => {
-    subtitle.classList.add(glitchClass);
-    glitchStarted = true;
-  }, 10000);
+// через 10 секунд запустить glitch
+setTimeout(() => {
+  subtitle.classList.add(glitchClass); // уже есть
+  title.classList.add("glitch-started"); // ⬅️ вот оно!
+  glitchStarted = true;
+}, 10000);
+
 
   subtitle.addEventListener("mouseenter", () => {
     if (glitchStarted) {

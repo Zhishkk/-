@@ -34,3 +34,52 @@ document.addEventListener("DOMContentLoaded", () => {
     forceShowWord = false;
   });
 });
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const subtitle = document.querySelector(".subtitle");
+  const creepyTexts = [
+    "ТЫ НЕ ОДИН",
+    "ПРЕКРАТИ",
+    "ПРОЯВИСЬ",
+    "*****",
+    "ОБЕРНИСЬ",
+    "ОН ЗДЕСЬ",
+    "ЖИШКА СМОТРИТ"
+  ];
+
+  let originalText = subtitle.textContent;
+  let glitchStarted = false;
+
+  // ⏳ Запуск глюков через 10 секунд
+  setTimeout(() => {
+    glitchStarted = true;
+    startSubtitleGlitch();
+  }, 10000);
+
+  // 🔁 Фоновый глитч
+  function startSubtitleGlitch() {
+    setInterval(() => {
+      if (Math.random() < 0.3) {
+        subtitle.textContent = creepyTexts[Math.floor(Math.random() * creepyTexts.length)];
+        setTimeout(() => {
+          subtitle.textContent = originalText;
+        }, 1000 + Math.random() * 1000);
+      }
+    }, 3000);
+  }
+
+  // 🖱️ Наведение
+  subtitle.addEventListener("mouseenter", () => {
+    if (!glitchStarted) return;
+    subtitle.textContent = creepyTexts[Math.floor(Math.random() * creepyTexts.length)];
+  });
+
+  subtitle.addEventListener("mouseleave", () => {
+    if (!glitchStarted) return;
+    setTimeout(() => {
+      subtitle.textContent = originalText;
+    }, 800);
+  });
+});

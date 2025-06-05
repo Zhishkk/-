@@ -1,89 +1,74 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Жишка</title>
-  <base href="./" />
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Твой CSS для линии */
-    .string-line {
-      height: 8px;
-      background: repeating-linear-gradient(
-        45deg,
-        #b22222,
-        #b22222 4px,
-        #8b0000 4px,
-        #8b0000 8px
-      );
-      border-radius: 4px;
-      box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3),
-                  inset 0 -2px 4px rgba(0, 0, 0, 0.3);
-      margin: 20px 0;
-      position: relative;
-    }
-
-    /* Чтобы фотки были в ряд и не съезжали */
-    .photo-card {
-      display: inline-block;
-      margin-right: 15px;
-      vertical-align: top;
-      max-width: 150px;
-    }
-
-    .photo-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 6px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.3);
-    }
-
-    /* Контейнер для фоток — делаем флексом, чтобы в ряд */
-    .photos-container {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      padding: 10px 0;
-      align-items: center;
-      gap: 10px;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Жишка</title>
+<style>
+  body {
+    background: #000;
+    color: #f00;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+  }
+  h1.glitch {
+    font-size: 4rem;
+    letter-spacing: 0.15em;
+    user-select: none;
+  }
+</style>
 </head>
 <body>
-  <div class="noise"></div>
 
-  <header>
-    <h1 class="glitch">Жишка</h1>
-    <p class="subtitle">[ЗАСЕКРЕЧЕНО]</p>
-  </header>
+<h1 class="glitch">ЖИШКА</h1>
 
-  <main>
-    <section class="darkroom">
-      <h2>Проявочная</h2>
+<script>
+  const glitchElement = document.querySelector('.glitch');
+  const word = 'ЖИШКА';
+  const letters = 'АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ0123456789@#$%&*';
+  
+  function getRandomChar() {
+    return letters.charAt(Math.floor(Math.random() * letters.length));
+  }
+  
+  function glitchEffect(durationMs, intervalMs) {
+    return new Promise(resolve => {
+      const iterations = durationMs / intervalMs;
+      let count = 0;
+      const interval = setInterval(() => {
+        let text = '';
+        for (let i = 0; i < word.length; i++) {
+          text += getRandomChar();
+        }
+        glitchElement.textContent = text;
+        count++;
+        if (count >= iterations) {
+          clearInterval(interval);
+          resolve();
+        }
+      }, intervalMs);
+    });
+  }
+  
+  function showWord(durationMs) {
+    return new Promise(resolve => {
+      glitchElement.textContent = word;
+      setTimeout(resolve, durationMs);
+    });
+  }
+  
+  async function loopGlitch() {
+    while(true) {
+      await glitchEffect(5000, 100); // 5 секунд глитча с обновлением каждые 100мс
+      await showWord(3000);          // 3 секунды слово
+    }
+  }
+  
+  loopGlitch();
+</script>
 
-      <!-- Вот эта линия, которую ты просил -->
-      <div class="string-line"></div>
-
-      <!-- Контейнер с фотками -->
-      <div class="photos-container">
-        <div class="photo-card"><img src="images/БЕЗОПАСНОСТЬ. Автор - Жишка..jpg" alt="Арт 1" /></div>
-        <div class="photo-card"><img src="images/ВЫБОР. Автор - Жишка..jpg" alt="Арт 2" /></div>
-        <div class="photo-card"><img src="images/ИДИ И СМОТРИ. Автор - Жишка..jpg" alt="Арт 3" /></div>
-        <div class="photo-card"><img src="images/НАБЛЮДАТЕЛЬ. Автор - Жишка..jpg" alt="Арт 4" /></div>
-        <div class="photo-card"><img src="images/НЕ ВОЛНУЙТЕСЬ. Автор - Жишка..jpg" alt="Арт 5" /></div>
-        <div class="photo-card"><img src="images/НИЧЕГО ЛИЧНОГО. Автор - Жишка..jpg" alt="Арт 6" /></div>
-        <div class="photo-card"><img src="images/ПЕЙЗАЖ. Автор - Жишка..jpg" alt="Арт 7" /></div>
-        <div class="photo-card"><img src="images/ЯРИЛО. Автор - Жишка..jpg" alt="Арт 8" /></div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>Телега: <a href="https://t.me/tovargoda2017">https://t.me/tovargoda2017</a></p>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>

@@ -113,44 +113,63 @@ header {
 
 .modal {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 9999;
+  backdrop-filter: none;
+  transition: backdrop-filter 0.3s ease;
 }
 
 .modal.open {
   display: flex;
+  backdrop-filter: none;
 }
 
-.modal-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  backdrop-filter: blur(2px);
-  cursor: pointer;
+/* Затемненный фон с размытие и чуть прозрачности */
+.modal.open::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
   z-index: 10;
 }
 
+/* Оверлей (фактически невидимый, чтоб ловить клики) */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  cursor: pointer;
+  z-index: 11;
+}
+
+/* Контейнер с фото поверх оверлея */
 .modal-content {
   position: relative;
   z-index: 20;
   max-width: 90vw;
   max-height: 90vh;
-  outline: 3px solid red; /* красная подсветка вокруг фотки */
-  box-shadow: 0 0 20px red;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow:
+    0 0 20px 8px rgba(255, 0, 0, 0.6),
+    0 0 40px 16px rgba(255, 0, 0, 0.3),
+    0 0 60px 24px rgba(255, 0, 0, 0.15);
   overflow: hidden;
+  background: #220000;
+  transition: transform 0.3s ease;
 }
 
+/* Картинка вписывается полностью, без обрезки */
 .modal-content img {
   max-width: 100%;
   max-height: 100%;
   display: block;
   object-fit: contain;
+  border-radius: 12px;
+  user-select: none;
+  pointer-events: none;
 }

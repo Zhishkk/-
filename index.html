@@ -18,7 +18,22 @@
   <main>
     <section class="darkroom">
       <h2>Проявочная</h2>
-      <div class="string-line">
+     .string-line {
+  height: 8px;
+  background: repeating-linear-gradient(
+    45deg,
+    #b22222,
+    #b22222 4px,
+    #8b0000 4px,
+    #8b0000 8px
+  );
+  border-radius: 4px;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3),
+              inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  margin: 20px 0;
+  position: relative;
+}
+
         <div class="photo-card"><img src="images/БЕЗОПАСНОСТЬ. Автор - Жишка..jpg" alt="Арт 1" /></div>
         <div class="photo-card"><img src="images/ВЫБОР. Автор - Жишка..jpg" alt="Арт 2" /></div>
         <div class="photo-card"><img src="images/ИДИ И СМОТРИ. Автор - Жишка..jpg" alt="Арт 3" /></div>

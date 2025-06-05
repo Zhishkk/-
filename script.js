@@ -111,3 +111,33 @@ document.addEventListener("DOMContentLoaded", () => {
     text-shadow: none;
   }
 }
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("modal");
+  const modalOverlay = document.getElementById("modalOverlay");
+  const modalImage = document.getElementById("modalImage");
+
+  // Все фотки в строке
+  const photos = document.querySelectorAll(".photo-card img");
+
+  photos.forEach(photo => {
+    photo.addEventListener("click", () => {
+      // В модалку ставим src нажатой фотки
+      modalImage.src = photo.src;
+
+      // Добавляем класс, который сделает подсветку красным и откроет модалку
+      modal.classList.add("open");
+    });
+  });
+
+  // Закрываем модалку по клику на затемнении
+  modalOverlay.addEventListener("click", () => {
+    modal.classList.remove("open");
+    modalImage.src = ""; // очищаем для безопасности
+  });
+});

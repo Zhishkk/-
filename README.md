@@ -24,7 +24,6 @@
   </style>
 </head>
 <body>
-  <h1>Жишка.ком™</h1>
   <p><a href="https://t.me/tovargoda2017">Подписывайся на подполье</a></p>
 </body>
 </html>

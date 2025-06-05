@@ -1,33 +1,30 @@
+
 body {
+  background: #0a0a0a;
+  color: #e91e63;
+  font-family: monospace;
   margin: 0;
   padding: 0;
-  font-family: monospace;
-  background-color: #111;
-  color: #eee;
 }
 
-header {
-  text-align: center;
+header, main, footer {
   padding: 2rem;
 }
 
-.glitch {
+h1.glitch {
   font-size: 3rem;
-  color: red;
-  text-shadow: 2px 0 #000, -2px 0 #000;
+  color: white;
+  text-shadow: 1px 0 red, -1px 0 cyan;
+  animation: glitch 1s infinite;
 }
 
-.subtitle {
-  font-size: 1.2rem;
-  color: #aaa;
-}
-
-main {
-  padding: 2rem;
-}
-
-.manifesto, .portfolio {
-  margin-bottom: 2rem;
+@keyframes glitch {
+  0% { text-shadow: 1px 0 red, -1px 0 cyan; }
+  20% { text-shadow: 2px 2px lime, -2px -2px magenta; }
+  40% { text-shadow: 1px 1px blue, -1px -1px red; }
+  60% { text-shadow: 0 0 white; }
+  80% { text-shadow: 2px -2px green, -2px 2px yellow; }
+  100% { text-shadow: 1px 0 red, -1px 0 cyan; }
 }
 
 .grid {
@@ -36,7 +33,7 @@ main {
 }
 
 .card {
-  background-color: #222;
+  background: #111;
   padding: 1rem;
-  border: 1px solid #444;
+  border: 1px dashed #e91e63;
 }

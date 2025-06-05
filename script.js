@@ -1,16 +1,57 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 🔴 СТАРЫЙ КОД: вся твоя анимация, glitch, смена надписей и т.п.
-  // например:
-  const title = document.querySelector('h1.glitch');
+  const title = document.querySelector('.glitch');
+  const subtitle = document.querySelector('.subtitle');
+  const glitchClass = 'glitch-started';
+  let glitchStarted = false;
 
-// через 10 секунд запустить glitch
-setTimeout(() => {
-  subtitle.classList.add(glitchClass); // уже есть
-  title.classList.add("glitch-started"); // ⬅️ вот оно!
-  glitchStarted = true;
-}, 10000);
+  const word = 'ЖИШКА';
+  const letters = 'АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ0123456789@#$%&*';
 
+  function getRandomChar() {
+    return letters.charAt(Math.floor(Math.random() * letters.length));
+  }
 
+  function glitchEffect(durationMs, intervalMs) {
+    return new Promise(resolve => {
+      const iterations = durationMs / intervalMs;
+      let count = 0;
+      const interval = setInterval(() => {
+        let text = '';
+        for (let i = 0; i < word.length; i++) {
+          text += getRandomChar();
+        }
+        title.textContent = text;
+        count++;
+        if (count >= iterations) {
+          clearInterval(interval);
+          resolve();
+        }
+      }, intervalMs);
+    });
+  }
+
+  function showWord(durationMs) {
+    return new Promise(resolve => {
+      title.textContent = word;
+      setTimeout(resolve, durationMs);
+    });
+  }
+
+  async function loopGlitch() {
+    while (true) {
+      await glitchEffect(5000, 100); // 5 сек глюк
+      await showWord(3000);          // 3 сек "ЖИШКА"
+    }
+  }
+
+  // 🔴 Запускаем всё это через 10 сек
+  setTimeout(() => {
+    subtitle.classList.add(glitchClass);
+    glitchStarted = true;
+    loopGlitch(); // 🧠 Глючим заголовок
+  }, 10000);
+
+  // 🔁 Подзаголовок — [ЗАСЕКРЕЧЕНО] и его фишки
   subtitle.addEventListener("mouseenter", () => {
     if (glitchStarted) {
       subtitle.textContent = getRandomSubtitle();
@@ -34,7 +75,7 @@ setTimeout(() => {
     return subtitles[Math.floor(Math.random() * subtitles.length)];
   }
 
-  // 🔴 НОВЫЙ КОД: фотки и модалка
+  // 🔲 Модалка с фотками
   const modal = document.getElementById("modal");
   const modalOverlay = document.getElementById("modalOverlay");
   const modalImage = document.getElementById("modalImage");

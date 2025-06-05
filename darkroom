@@ -1,0 +1,43 @@
+<section class="darkroom">
+  <h2>Проявочная</h2>
+  <div class="string-line">
+    <div class="photo-card"><img src="art1.jpg" alt="Арт 1"></div>
+    <div class="photo-card"><img src="art2.jpg" alt="Арт 2"></div>
+    <div class="photo-card"><img src="art3.jpg" alt="Арт 3"></div>
+  </div>
+</section>
+.darkroom {
+  background-color: #110000;
+  padding: 2rem;
+  color: crimson;
+  text-align: center;
+}
+
+.string-line {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  position: relative;
+  border-top: 2px solid crimson;
+  padding-top: 2rem;
+}
+
+.photo-card {
+  position: relative;
+  top: -1rem;
+  transform: rotate(calc(-3deg + 6deg * random()));
+  animation: sway 4s ease-in-out infinite alternate;
+}
+
+.photo-card img {
+  width: 150px;
+  height: auto;
+  border: 2px solid #550000;
+  filter: grayscale(100%) brightness(80%);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+@keyframes sway {
+  from { transform: rotate(-2deg); }
+  to { transform: rotate(2deg); }
+}

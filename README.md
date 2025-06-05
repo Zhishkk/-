@@ -1,2 +1,20 @@
 Жишка
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'VT323', monospace;
+    background-color: #fff0f0;
+    color: #111;
+    padding: 40px;
+  }
+  a {
+    color: red;
+    text-decoration: none;
+  }
+  h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+</style>
+
 https://t.me/tovargoda2017

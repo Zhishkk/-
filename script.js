@@ -39,47 +39,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const subtitle = document.querySelector(".subtitle");
-  const creepyTexts = [
-    "ТЫ НЕ ОДИН",
-    "ПРЕКРАТИ",
-    "ПРОЯВИСЬ",
-    "*****",
-    "ОБЕРНИСЬ",
-    "ОН ЗДЕСЬ",
-    "ЖИШКА СМОТРИТ"
+
+  const glitchTexts = [
+    "[ОПАСНОСТЬ]",
+    "[ОБЕРНИТЕСЬ]",
+    "[ВЫ ПОД НАБЛЮДЕНИЕМ]",
+    "[ЖИШКА СМОТРИТ]",
+    "[ПРОНИКНОВЕНИЕ]",
+    "[НЕТ СИГНАЛА]",
+    "[*****]"
   ];
 
-  let originalText = subtitle.textContent;
-  let glitchStarted = false;
+  let glitchReady = false; // Флаг, что 10 секунд прошло
+  let glitchInterval = null; // для setInterval глюков
 
-  // ⏳ Запуск глюков через 10 секунд
+  // Сначала устанавливаем текст в стабильный
+  subtitle.textContent = "[ЗАСЕКРЕЧЕНО]";
+
+  // Через 10 секунд разрешаем глючить
   setTimeout(() => {
-    glitchStarted = true;
-    startSubtitleGlitch();
+    glitchReady = true;
   }, 10000);
 
-  // 🔁 Фоновый глитч
-  function startSubtitleGlitch() {
-    setInterval(() => {
-      if (Math.random() < 0.3) {
-        subtitle.textContent = creepyTexts[Math.floor(Math.random() * creepyTexts.length)];
-        setTimeout(() => {
-          subtitle.textContent = originalText;
-        }, 1000 + Math.random() * 1000);
-      }
-    }, 3000);
-  }
-
-  // 🖱️ Наведение
+  // Навели курсор
   subtitle.addEventListener("mouseenter", () => {
-    if (!glitchStarted) return;
-    subtitle.textContent = creepyTexts[Math.floor(Math.random() * creepyTexts.length)];
+    if (!glitchReady) return; // Если 10 сек не прошло — игнорируем
+
+    // Запускаем глюк (каждые 100мс меняем текст на случайный)
+    glitchInterval = setInterval(() => {
+      const randomText = glitchTexts[Math.floor(Math.random() * glitchTexts.length)];
+      subtitle.textContent = randomText;
+    }, 100);
+
+    // Можно добавить класс для анимации, если хочешь
+    subtitle.classList.add("glitch");
   });
 
+  // Убрали курсор
   subtitle.addEventListener("mouseleave", () => {
-    if (!glitchStarted) return;
-    setTimeout(() => {
-      subtitle.textContent = originalText;
-    }, 800);
+    if (!glitchReady) return;
+
+    // Останавливаем глюк и возвращаем стабильный текст
+    clearInterval(glitchInterval);
+    glitchInterval = null;
+    subtitle.textContent = "[ЗАСЕКРЕЧЕНО]";
+    subtitle.classList.remove("glitch");
   });
 });
+

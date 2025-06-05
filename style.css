@@ -37,3 +37,70 @@ h1.glitch {
   padding: 1rem;
   border: 1px dashed #e91e63;
 }
+
+
+body {
+  margin: 0;
+  font-family: monospace;
+  background-color: #0d0000;
+  color: crimson;
+  overflow-x: hidden;
+}
+
+header {
+  text-align: center;
+  padding: 2rem;
+}
+
+.glitch {
+  font-size: 3rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+}
+
+.darkroom {
+  background-color: #110000;
+  padding: 2rem;
+  text-align: center;
+}
+
+.string-line {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  position: relative;
+  border-top: 2px solid crimson;
+  padding-top: 2rem;
+}
+
+.photo-card {
+  animation: fadeIn 1s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.photo-card img {
+  width: 150px;
+  height: auto;
+  border: 2px solid #550000;
+  filter: grayscale(100%) brightness(80%);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+  transition: 0.3s ease-in-out;
+}
+
+.photo-card img:hover {
+  filter: none;
+  box-shadow: 0 0 20px crimson;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

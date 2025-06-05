@@ -1,4 +1,2 @@
-Жишка-site/
-├── index.html      
-├── style.css       
-└── images/        
+Жишка
+https://t.me/tovargoda2017

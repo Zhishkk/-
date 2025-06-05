@@ -1,8 +1,3 @@
-Zhishkk/
-├── index.html
-├── style.css 
-└── картинки
-
 <html lang="ru">
 <head>
   <meta charset="UTF-8">

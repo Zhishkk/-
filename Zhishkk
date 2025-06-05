@@ -2,7 +2,7 @@ Zhishkk/
 ├── index.html
 ├── style.css
 ├── script.js
-└── Zhishkk/images/
-    ├── images/БЕЗОПАСНОСТЬ. Автор - Жишка..jpg
-    ├── БЕЗОПАСНОСТЬ. Автор - Жишка..jpg
-    └── images/БЕЗОПАСНОСТЬ. Автор - Жишка..jpg
+├── images/
+│   ├── art1.jpg
+│   ├── art2.jpg
+│   ├── art3.jpg

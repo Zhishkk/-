@@ -40,7 +40,7 @@ function generateNoise() {
     const x = Math.random() * width;
     const y = Math.random() * height;
     const opacity = Math.random() * 0.1;
-    ctx.fillStyle = rgba(255,255,255,${opacity});
+    ctx.fillStyle = `rgba(255,255,255,${opacity})`;
     ctx.fillRect(x, y, 1, 1);
   }
 

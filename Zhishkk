@@ -1,4 +1,8 @@
 Жишка-site/
-├── index.html      
-├── style.css       
-└── images/        
+├── index.html         ← Главная страница
+├── style.css          ← Стили
+├── script.js          ← Анимации, интерактив
+├── /assets            ← Картинки, шрифты, звуки
+│   ├── img/
+│   ├── fonts/
+│   └── audio/

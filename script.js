@@ -136,20 +136,44 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 🔲 Модалка с фотками
+
+
+
+
+
+
+  // ...твои остальные скрипты остаются, ниже добавляем/заменяем
+
+document.addEventListener("DOMContentLoaded", () => {
+  // ...твой код с глитчем и остальным
+
+  // ==== Модалка с фотками — переработанный код ====
   const modal = document.getElementById("modal");
   const modalOverlay = document.getElementById("modalOverlay");
   const modalImage = document.getElementById("modalImage");
   const photos = document.querySelectorAll(".photo-card img");
 
   photos.forEach(photo => {
+    photo.style.cursor = "zoom-in"; // намек, что можно кликать
     photo.addEventListener("click", () => {
       modalImage.src = photo.src;
       modal.classList.add("open");
+      document.body.style.overflow = "hidden"; // запрет скролла при открытой модалке
     });
   });
 
-  modalOverlay.addEventListener("click", () => {
+  modalOverlay.addEventListener("click", closeModal);
+
+  // чтобы закрыть по клавише Esc
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("open")) {
+      closeModal();
+    }
+  });
+
+  function closeModal() {
     modal.classList.remove("open");
     modalImage.src = "";
-  });
+    document.body.style.overflow = "auto";
+  }
 });
